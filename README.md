@@ -1,0 +1,2 @@
+# angularjsOne
+trying out angular
