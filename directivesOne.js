@@ -3,19 +3,26 @@
 
     function controllerDirectives($scope, $http) {
         $scope.heading = "Github Account Info";
-        $scope.username = "undefined"
+        $scope.username = "ak-padmalayan";
+        $scope.repoSortOrder = "+name";
 
         $scope.searchGITUser = function(username)
         {
-            let httpPromise = $http.get("https://api.github.com/users/"+username);
-            httpPromise.then(onHttpPromiseFulfilled, onHttpPromiseFailed);
+            $http.get("https://api.github.com/users/"+username)
+                .then(onUserReceived, onHttpFailed);
         }
 
-        function onHttpPromiseFulfilled(httpResponse) {
-            $scope.githubAccount = httpResponse.data;
+        function onUserReceived(httpResponse) {
+            $scope.githubUser = httpResponse.data;
+            $http.get($scope.githubUser.repos_url)
+                .then(onUserReposReceived, onHttpFailed);
         }
 
-        function onHttpPromiseFailed(reason) {
+        function onUserReposReceived(httpResponse) {
+            $scope.githubUser.reposList = httpResponse.data;
+        }
+
+        function onHttpFailed(reason) {
             $scope.error = "ERROR!!! http request failed :(";
         }
     }
