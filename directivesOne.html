@@ -19,30 +19,7 @@
         <img ng-src="{{githubUser.avatar_url}}" alt="GitHub Avatar" width="80px" height="80px">
     </div>
     
-    <div ng-show="githubUser.reposList">
-        RepoOrder:
-        <select ng-model="repoSortOrder">
-            <option value="+name">Name</option>
-            <option value="-name">NameInv</option>
-            <option value="+size">Size</option>
-            <option value="-size">SizeInv</option>
-        </select>
-        <table>
-            <thead>
-                <tr>
-                    <th>name</th>
-                    <th>language</th>
-                    <th>size</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="repo in githubUser.reposList | orderBy:repoSortOrder">
-                    <td>{{repo.name}}</td>
-                    <td>{{repo.language}}</td>
-                    <td>{{repo.size}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div ng-include="'directivesOneRepoListTable.html'" ng-show="githubUser.reposList">
     </div>
     <div>
         <h3>{{error}}</h3>
