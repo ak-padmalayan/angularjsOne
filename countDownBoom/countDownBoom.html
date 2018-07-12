@@ -7,6 +7,16 @@
     <script src="./countDownBoom.js"></script>
 </head>
 <body  ng-app="countDownBoom" ng-controller="boomController">
-    <h1>{{heading}}</h1>
+    <div ng-show="!boom && !saved">
+        <h1>{{heading}}</h1>
+        <h3>Going BOOM in {{timerCount}} seconds</h3>
+        <button ng-click="saveTheWorld()">Save the World</button>
+    </div>
+    <div ng-show="boom">
+        <h1>BOOOOMMMMM!!!!</h1>
+    </div>
+    <div ng-show="saved">
+        <h1>YOU SAVED THE WORLD</h1>
+    </div>
 </body>
 </html>
