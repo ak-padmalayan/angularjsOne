@@ -3,12 +3,16 @@
 
     angularJSOne.config(function($routeProvider) {
         $routeProvider
-            .when("/main", {
-                templateUrl:"./views/main.html",
-                controller:"mainController"
+            .when("/", {
+                templateUrl:"./views/searchUser.html",
+                controller:"searchController"
+            })
+            .when("/user/:userName", {
+                templateUrl:"./views/userDetails.html",
+                controller:"userDetailsController"
             })
             .otherwise({
-                redirectTo:"/main"
+                redirectTo:"/"
             });
     });
 
