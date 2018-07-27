@@ -21,7 +21,7 @@
         }
     }
 
-    const appDirectives = angular.module("appDirectives");
-    appDirectives.factory("githubConnector", githubConnector);
+    const angularJSOne = angular.module("angularJSOne");
+    angularJSOne.factory("githubConnector", githubConnector);
 
 }());

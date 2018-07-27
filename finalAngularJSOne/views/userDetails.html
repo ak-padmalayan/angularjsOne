@@ -1,3 +1,32 @@
 <div>
     <h2>User Details</h2>
+    <div ng-show="githubUser">
+        <h3>{{githubUser.login}}</h3>
+        <img ng-src="{{githubUser.avatar_url}}" alt="GitHub Avatar" width="80px" height="80px">
+    </div>
+    <div ng-show="githubUser.reposList">
+        RepoOrder:
+        <select ng-model="repoSortOrder">
+            <option value="+name">Name</option>
+            <option value="-name">NameInv</option>
+            <option value="+size">Size</option>
+            <option value="-size">SizeInv</option>
+        </select>
+        <table>
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>language</th>
+                    <th>size</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="repo in githubUser.reposList | orderBy:repoSortOrder">
+                    <td ng-click="repoSelected(repo.name)">{{repo.name}}</td>
+                    <td>{{repo.language}}</td>
+                    <td>{{repo.size}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
