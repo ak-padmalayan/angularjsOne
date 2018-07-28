@@ -1,5 +1,5 @@
 (function(){
-    function githubConnector($http)
+    function githubConnector($http, $log)
     {
         function getUser(username) {
             return $http.get("https://api.github.com/users/"+username)
@@ -15,9 +15,19 @@
                 });
         }
 
+        function getRepo(username, reponame) {
+            const getRepoUrl = "https://api.github.com/repos/"+username+"/"+reponame;
+            $log.info("getRepoUrl "+getRepoUrl);
+            return $http.get(getRepoUrl)
+                .then(function(httpResponse) {
+                    return httpResponse.data;
+                });
+        }
+
         return {
             getUser: getUser,
-            getReposForUser: getReposForUser
+            getReposForUser: getReposForUser,
+            getRepo: getRepo
         }
     }
 
